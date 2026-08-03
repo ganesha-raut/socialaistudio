@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  body {
+    margin: 0;
+    background-color: #0d0f1d;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(6, 182, 212, 0.12) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0f1d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.7);
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Vivid Vibrant Glass Cards */
+  .vivid-card {
+    background: rgba(20, 24, 45, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  .vivid-card-hover {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .vivid-card-hover:hover {
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.3), 0 0 25px rgba(6, 182, 212, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .vivid-input {
+    background: rgba(13, 16, 32, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .vivid-input:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2), 0 0 30px rgba(168, 85, 247, 0.25);
+  }
+
+  /* Vibrant Text Gradients */
+  .text-gradient-vivid {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f43f5e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-cyan-purple {
+    background: linear-gradient(135deg, #22d3ee 0%, #818cf8 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ea580c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Electric Vibrant Buttons */
+  .btn-vivid-gradient {
+    background: linear-gradient(135deg, #7c3aed 0%, #c026d3 50%, #db2777 100%);
+    background-size: 200% 200%;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-vivid-gradient:hover {
+    background-position: 100% 0;
+    box-shadow: 0 0 35px rgba(192, 38, 211, 0.5), 0 0 15px rgba(124, 58, 237, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Platform Gradient Badges */
+  .bg-linkedin-gradient { background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%); }
+  .bg-twitter-gradient { background: linear-gradient(135deg, #1da1f2 0%, #0ea5e9 100%); }
+  .bg-instagram-gradient { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+  .bg-facebook-gradient { background: linear-gradient(135deg, #1877f2 0%, #3b82f6 100%); }
+  .bg-youtube-gradient { background: linear-gradient(135deg, #ff0000 0%, #e11d48 100%); }
+  .bg-threads-gradient { background: linear-gradient(135deg, #000000 0%, #334155 100%); }
+  .bg-pinterest-gradient { background: linear-gradient(135deg, #e60023 0%, #f43f5e 100%); }
+}

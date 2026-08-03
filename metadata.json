@@ -1,0 +1,6 @@
+{
+  "name": "Social Content Generator",
+  "description": "Cross-platform social media post and image generator tailored for LinkedIn, Twitter/X, and Instagram.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

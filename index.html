@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0d0f1d" />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>SocialAI Studio - Autonomous Social Content Engine & Multimodal Virality Platform</title>
+    <meta name="title" content="SocialAI Studio - Autonomous Social Content Engine & Multimodal Virality Platform" />
+    <meta name="description" content="SocialAI Studio is the #1 Autonomous Multimodal AI Content Engine for Creators, YouTubers & Brands. Generate viral captions, 15s Reel storyboards, A/B hooks, and hashtags backed by 2026 social algorithms." />
+    <meta name="keywords" content="SocialAI Studio, AI content generator, viral captions generator, 15s reel storyboard AI, social media growth engine, LinkedIn post generator, Instagram reel script AI, Twitter hook generator" />
+    <meta name="author" content="SocialAI Studio" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook / WhatsApp Link Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://socialaistudio.com/" />
+    <meta property="og:title" content="SocialAI Studio - Autonomous Social Content Engine" />
+    <meta property="og:description" content="Generate viral captions, 15s Reel storyboards, A/B hooks, and hashtags backed by 2026 social algorithms." />
+    <meta property="og:image" content="/socialaistudio.png" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://socialaistudio.com/" />
+    <meta property="twitter:title" content="SocialAI Studio - Autonomous Social Growth Engine" />
+    <meta property="twitter:description" content="Multimodal AI Virality Engine for Creators, YouTubers & Brands." />
+    <meta property="twitter:image" content="/socialaistudio.png" />
+
+    <!-- Mobile App & PWA Settings -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SocialAI Studio" />
+
+    <!-- Preload & Favicon Icons (Displays in Browser Tab) -->
+    <link rel="preload" as="image" href="/socialaistudio.png" type="image/png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/socialaistudio.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/socialaistudio.png" />
+    <link rel="shortcut icon" type="image/png" href="/socialaistudio.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/socialaistudio.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Structured Data JSON-LD Schema for Google Search -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SocialAI Studio",
+        "url": "https://socialaistudio.com",
+        "description": "Autonomous Multimodal AI Content Engine for Creators, YouTubers & Brands.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('PWA ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
