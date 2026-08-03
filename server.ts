@@ -11,6 +11,13 @@ const PORT = 3000;
 app.use(express.json({ limit: "500mb" }));
 app.use(express.urlencoded({ limit: "500mb", extended: true }));
 
+// Allow embedding in iframes on ganesharaut.in
+app.use((_req, res, next) => {
+  res.setHeader("Content-Security-Policy", "frame-ancestors 'self' https://ganesharaut.in https://*.ganesharaut.in");
+  res.removeHeader("X-Frame-Options");
+  next();
+});
+
 // Helper to get GoogleGenAI instance safely from environment
 function getAIClient(reqOrKey?: any): GoogleGenAI | null {
   dotenv.config({ override: true });
