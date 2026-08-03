@@ -860,9 +860,9 @@ app.get("/api/auth/linkedin/login-url", (req, res) => {
 });
 
 // ==========================================
-// 📦 SQLITE / LOCAL VECTOR DATABASE ENGINE
+// 📦 IN-MEMORY VECTOR DATABASE ENGINE
+// (Pure in-memory — Vercel serverless safe, no filesystem dependency)
 // ==========================================
-import fs from "fs";
 
 interface VectorDocument {
   id: string;
@@ -874,44 +874,8 @@ interface VectorDocument {
 }
 
 class LocalVectorDB {
-  private filePath: string;
+  // Pure in-memory store — no filesystem reads/writes
   private documents: VectorDocument[] = [];
-
-  constructor() {
-    try {
-      const isVercel = process.env.VERCEL === "1" || process.env.NODE_ENV === "production";
-      this.filePath = isVercel
-        ? path.join("/tmp", "vector_store.json")
-        : path.join(process.cwd(), "vector_store.json");
-      this.loadStore();
-    } catch (e) {
-      console.warn("Vector DB init fallback to in-memory mode");
-      this.filePath = "/tmp/vector_store.json";
-      this.documents = [];
-    }
-  }
-
-  private loadStore() {
-    try {
-      if (this.filePath && fs.existsSync(this.filePath)) {
-        const raw = fs.readFileSync(this.filePath, "utf-8");
-        this.documents = JSON.parse(raw);
-      }
-    } catch (e) {
-      console.warn("Failed loading vector store, starting fresh:", e);
-      this.documents = [];
-    }
-  }
-
-  private saveStore() {
-    try {
-      if (this.filePath) {
-        fs.writeFileSync(this.filePath, JSON.stringify(this.documents, null, 2), "utf-8");
-      }
-    } catch (e) {
-      console.warn("Failed saving vector store to file, keeping in-memory:", e);
-    }
-  }
 
   // Simple TF-IDF Bag-of-Words Vectorizer
   private vectorize(text: string): number[] {
@@ -943,8 +907,7 @@ class LocalVectorDB {
     };
     this.documents = this.documents.filter((d) => d.id !== "profile_main");
     this.documents.push(doc);
-    this.saveStore();
-    console.log("[Vector Store] Profile vector indexed into Vector Store.");
+    console.log("[VectorDB] Profile upserted in-memory.");
     return doc;
   }
 
