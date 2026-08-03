@@ -11,6 +11,7 @@ import { ScheduleDrawer } from "./components/ScheduleDrawer";
 import { BusinessProfileModal } from "./components/BusinessProfileModal";
 import { MobileBottomNav } from "./components/MobileBottomNav";
 import { HomeDashboard } from "./components/HomeDashboard";
+import { PwaInstallModal } from "./components/PwaInstallModal";
 import { requestNotificationPermission, sendBackgroundNotification } from "./utils/permissions";
 import { GeneratedCampaign, GenerationParams, PlatformId, ConnectedAccount, ScheduledPost, AiLearningLog, BusinessProfile } from "./types";
 import { PLATFORM_CONFIGS } from "./data/constants";
@@ -575,16 +576,22 @@ export default function App() {
 
       {/* Fixed Mobile Bottom Navigation Bar */}
       <MobileBottomNav
+        activeView={activeView}
+        onNavigateHome={() => setActiveView("home")}
+        onNavigateCreator={() => setActiveView("creator")}
         historyCount={history.length}
         onOpenHistory={() => setIsHistoryOpen(true)}
         onNewCampaign={() => {
           setCurrentCampaign(null);
           setErrorMessage(null);
-          window.scrollTo({ top: 0, behavior: "smooth" });
+          setActiveView("creator");
         }}
         onOpenAlgorithmModal={() => setIsAlgorithmModalOpen(true)}
         onOpenBusinessProfile={() => setIsBizModalOpen(true)}
       />
+
+      {/* Smart PWA Install & Permissions Modal */}
+      <PwaInstallModal />
     </div>
   );
 }

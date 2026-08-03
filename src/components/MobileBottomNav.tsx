@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Sparkles, User, Cpu, History, Download, Home, PlusCircle } from "lucide-react";
+import React from "react";
+import { Sparkles, User, History, Home } from "lucide-react";
 
 interface MobileBottomNavProps {
   activeView: "home" | "creator";
@@ -18,35 +18,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onNavigateCreator,
   historyCount,
   onOpenHistory,
-  onNewCampaign,
-  onOpenAlgorithmModal,
   onOpenBusinessProfile,
 }) => {
-  const [deferredPrompt, setDeferredPrompt] = useState<any | null>(null);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-    };
-    window.addEventListener("beforeinstallprompt", handler);
-    return () => window.removeEventListener("beforeinstallprompt", handler);
-  }, []);
-
-  const handleInstallPWA = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") {
-        setDeferredPrompt(null);
-      }
-    } else {
-      alert("📲 To install SocialAI Studio on your phone:\n\n• On Chrome/Android: Tap 3 dots ⋮ -> 'Add to Home screen'\n• On iPhone/Safari: Tap Share ⎋ -> 'Add to Home Screen'");
-    }
-  };
-
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-[#0d0f1d]/95 backdrop-blur-2xl border-t border-purple-500/30 px-2 py-1.5 shadow-[0_-5px_25px_rgba(0,0,0,0.8)] flex items-center justify-around">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-[#0d0f1d]/95 backdrop-blur-2xl border-t border-purple-500/30 px-3 py-2 shadow-[0_-5px_25px_rgba(0,0,0,0.8)] flex items-center justify-around">
       {/* Home Tab */}
       <button
         onClick={onNavigateHome}
@@ -92,16 +67,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             {historyCount}
           </span>
         )}
-      </button>
-
-      {/* Install App */}
-      <button
-        onClick={handleInstallPWA}
-        className="flex flex-col items-center gap-0.5 text-emerald-400 font-bold p-1 rounded-xl hover:bg-slate-900 transition-all"
-        title="Install SocialAI App on Phone"
-      >
-        <Download className="w-5 h-5 text-emerald-400 animate-bounce" />
-        <span className="text-[10px]">Install</span>
       </button>
     </nav>
   );
