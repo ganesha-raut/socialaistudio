@@ -1276,6 +1276,14 @@ Return a JSON object with:
   }
 });
 
+// Endpoint 6: Web Push VAPID Public Key Retriever
+app.get("/api/vapid-public-key", (req, res) => {
+  res.json({
+    publicKey: process.env.VAPID_PUBLIC_KEY || "BF7jo87T13wZ7e2grClSEmL1-O_2tCeMLuLCkmPxWS4_Z-rA4P-AB4n2OTb-Eln3dw6sNQupDTcrbqCdDdFS_MQ",
+    contactEmail: process.env.VAPID_SUBJECT || "mailto:ganeshraut.contact@gmail.com"
+  });
+});
+
 // Setup Vite development server or static serving in production
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
