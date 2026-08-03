@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
 
@@ -1261,12 +1260,14 @@ app.get("/api/vapid-public-key", (req, res) => {
 });
 
 // Setup Vite development server or static serving in production
+// Vite is imported DYNAMICALLY so Vercel serverless cold start never requires it
 async function startServer() {
   if (process.env.VERCEL === "1") {
     return;
   }
 
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
