@@ -23,14 +23,19 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys.map((key) => {
-          // Delete any cache that isn't the current version
           if (key !== CACHE_VERSION && key !== SHELL_CACHE) {
             console.log("[SW] Deleting old cache:", key);
             return caches.delete(key);
           }
         })
       )
-    )
+    ).then(() => {
+      // After old caches cleared, force all open tabs to reload
+      // so they pick up fresh JS/CSS bundles (not stale HTML from old SW)
+      return self.clients.matchAll({ includeUncontrolled: true }).then((clients) => {
+        clients.forEach((client) => client.postMessage({ type: "SW_UPDATED" }));
+      });
+    })
   );
   self.clients.claim();
 });

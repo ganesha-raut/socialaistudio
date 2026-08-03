@@ -76,6 +76,14 @@
             console.warn('SW registration:', err);
           }
         });
+
+        // Listen for SW_UPDATED message from ServiceWorker to automatically refresh page
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === 'SW_UPDATED') {
+            console.log('ServiceWorker updated, auto-refreshing...');
+            window.location.reload();
+          }
+        });
       }
     </script>
   </body>
