@@ -59,9 +59,12 @@ export default function App() {
   useEffect(() => {
     if (!businessProfile) {
       fetch("/api/vector/get-profile")
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) return null;
+          return res.json();
+        })
         .then((data) => {
-          if (data.success && data.profile) {
+          if (data && data.success && data.profile) {
             setBusinessProfile(data.profile);
             localStorage.setItem("socialai_creator_profile_v4", JSON.stringify(data.profile));
           }
