@@ -1286,6 +1286,10 @@ app.get("/api/vapid-public-key", (req, res) => {
 
 // Setup Vite development server or static serving in production
 async function startServer() {
+  if (process.env.VERCEL === "1") {
+    return;
+  }
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -1306,3 +1310,6 @@ async function startServer() {
 }
 
 startServer();
+
+export { app };
+export default app;
